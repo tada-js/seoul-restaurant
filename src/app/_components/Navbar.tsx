@@ -31,7 +31,7 @@ const Navbar = () => {
 
       {/* MOBILE NAVBAR */}
       {isOpen && (
-        <div className="fixed top-[58px] z-[100] w-full h-auto bg-[#2CBFB1] text-[#f2f2f2] shadow-md sm:hidden">
+        <div className="fixed top-[56px] z-[100] w-full h-auto bg-[#2CBFB1] text-[#f2f2f2] shadow-md sm:hidden">
           <div className="flex flex-col gap-4 px-[18px] py-10">
             <Link
               className="flex gap-4 items-center"
