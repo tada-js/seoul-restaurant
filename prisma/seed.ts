@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-const data = require('../data/서울시 일반음식점 인허가 정보.json');
+const data = require('../src/data/서울시 일반음식점 인허가 정보.json');
 
 interface RestaurantData {
   bplcnm: string;
