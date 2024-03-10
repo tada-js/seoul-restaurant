@@ -4,9 +4,9 @@ const data = require('../src/data/서울시 일반음식점 인허가 정보.jso
 interface RestaurantData {
   bplcnm: string;
   SITETEL?: string;
-  SITEWHLADDR?: string;
-  RDNWHLADDR?: string;
-  bizcnd_code_nm?: string;
+  sitewhladdr?: string;
+  rdnwhladdr?: string;
+  uptaenm?: string;
   x?: string;
   y?: string;
 }
@@ -17,10 +17,9 @@ async function seedData() {
   data?.['DATA']?.map(async (restaurant: RestaurantData) => {
     const restaurantData = {
       name: restaurant?.bplcnm,
-      phone: restaurant?.SITETEL,
-      address: restaurant?.SITEWHLADDR,
-      rodaress: restaurant?.RDNWHLADDR,
-      category: restaurant?.bizcnd_code_nm,
+      address: restaurant?.sitewhladdr,
+      rodaddress: restaurant?.rdnwhladdr,
+      category: restaurant?.uptaenm,
       lng: restaurant?.x,
       lat: restaurant?.y,
     };
@@ -28,8 +27,6 @@ async function seedData() {
     const res = await prisma.restaurant.create({
       data: restaurantData,
     });
-
-    console.log(res);
   });
 }
 

@@ -16,9 +16,8 @@ model User {
 model Restaurant {
   id         Int     @id @default(autoincrement())
   name       String? // bplcnm
-  phone      String? // SITETEL
-  address    String? // SITEWHLADDR
-  rodaddress String? // RDNWHLADDR
+  address    String? // sitewhladdr
+  rodaddress String? // rdnwhladdr
   category   String? // uptaenm
   lng        String? // x
   lat        String? // y
