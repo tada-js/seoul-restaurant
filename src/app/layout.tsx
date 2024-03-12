@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
 import Navbar from './_components/Navbar';
+import Providers from './_components/Providers';
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -25,7 +26,9 @@ export default function RootLayout({
         <header>
           <Navbar />
         </header>
-        <main className="pt-14">{children}</main>
+        <Providers>
+          <main className="pt-14">{children}</main>
+        </Providers>
       </body>
     </html>
   );
