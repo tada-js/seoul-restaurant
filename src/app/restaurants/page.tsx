@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import getRestaurants from './_lib/getRestaurants';
+import getRestaurants from '../_lib/getRestaurants';
 
 const RestaurantsPage = () => {
   const { data: restaurant } = useQuery({

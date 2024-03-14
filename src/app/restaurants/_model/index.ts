@@ -4,6 +4,6 @@ export interface RestaurantsType {
   address?: string | null;
   rodaddress?: string | null;
   category?: string | null;
-  lng?: string | null;
-  lat?: string | null;
+  lng?: string;
+  lat?: string;
 }

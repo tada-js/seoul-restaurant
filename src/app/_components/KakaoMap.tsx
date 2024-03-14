@@ -3,6 +3,7 @@
 'use client';
 
 import Script from 'next/script';
+import { useMapStore } from '../_store/map';
 
 declare global {
   interface Window {
@@ -10,9 +11,11 @@ declare global {
   }
 }
 
+const Lat = 37.497625203;
+const Lng = 127.03088379;
+
 const KakaoMap = () => {
-  const Lat = 33.450701;
-  const Lng = 126.570667;
+  const setMap = useMapStore().setMap;
 
   const loadKakaoMap = () => {
     window.kakao.maps.load(() => {
@@ -23,6 +26,7 @@ const KakaoMap = () => {
       };
 
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
+      setMap(map);
     });
   };
 

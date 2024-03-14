@@ -11,5 +11,5 @@ export async function GET(
     orderBy: { id: 'asc' },
   });
 
-  return Response.json({ restaurants });
+  return Response.json(restaurants);
 }
