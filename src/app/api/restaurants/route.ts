@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import { RestaurantsType } from '@/app/restaurants/_model';
+import { RestaurantType } from 'app/restaurants/_model';
 
 export async function GET(
   req: NextApiRequest,
-  res: NextApiResponse<RestaurantsType[]>
+  res: NextApiResponse<RestaurantType[]>
 ) {
   const prisma = new PrismaClient();
   const restaurants = await prisma.restaurant.findMany({

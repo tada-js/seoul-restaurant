@@ -1,4 +1,4 @@
-export interface RestaurantsType {
+export interface RestaurantType {
   id: number;
   name?: string | null;
   address?: string | null;
