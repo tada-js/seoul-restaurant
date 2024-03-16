@@ -5,7 +5,10 @@ import proj4 from 'proj4';
 import { RestaurantType } from 'app/restaurants/_model';
 import { categories } from 'app/_constants/restaurant';
 import { useKaKaoMapStore } from 'app/_store/kakaoMap';
-import { useCurrentRestaurantStore } from 'app/_store/restaurant';
+import {
+  useCurrentRestaurantStore,
+  useImageSrcStore,
+} from 'app/_store/restaurant';
 
 interface Props {
   restaurants: RestaurantType[];
@@ -14,13 +17,9 @@ interface Props {
 const KakaoMapMarkers = ({ restaurants }: Props) => {
   const kakaoMap = useKaKaoMapStore().kakaoMap;
   const setCurrentRestaurantStore = useCurrentRestaurantStore(
-    (state) => state.setCurrentRestaurantStore
+    (state) => state.setCurrentRestaurant
   );
-  const currentRestaurant = useCurrentRestaurantStore(
-    (state) => state.currentRestaurant
-  );
-
-  console.log(currentRestaurant);
+  const setImageSrc = useImageSrcStore((state) => state.setImageSrc);
 
   const loadKakaoMarkers = useCallback(() => {
     // Proj4js에 TM 좌표계와 WGS84 좌표계 정의 추가
@@ -98,10 +97,11 @@ const KakaoMapMarkers = ({ restaurants }: Props) => {
         // 선택한 가게 저장
         window.kakao.maps.event.addListener(marker, 'click', function () {
           setCurrentRestaurantStore(rest);
+          setImageSrc(imageSrc);
         });
       });
     }
-  }, [kakaoMap, restaurants, setCurrentRestaurantStore]);
+  }, [kakaoMap, restaurants, setCurrentRestaurantStore, setImageSrc]);
 
   useEffect(() => {
     loadKakaoMarkers();
