@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface mapState {
+interface KaKaoMapState {
   kakaoMap: any;
   setKaKaoMap(map: any): void;
 }
 
-export const useKaKaoMapStore = create<mapState>((set) => ({
+export const useKaKaoMapStore = create<KaKaoMapState>((set) => ({
   kakaoMap: null,
   setKaKaoMap(kakaoMap) {
     set({ kakaoMap });
