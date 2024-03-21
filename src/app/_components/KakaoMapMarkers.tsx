@@ -1,8 +1,8 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
 import proj4 from 'proj4';
-import { RestaurantType } from 'app/restaurants/_model';
+import { useCallback, useEffect } from 'react';
+import { RestaurantType } from 'app/(route)/restaurants/_model';
 import { categories } from 'app/_constants/restaurant';
 import { useKaKaoMapStore } from 'app/_store/kakaoMap';
 import {
