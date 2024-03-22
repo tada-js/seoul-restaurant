@@ -7,6 +7,8 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { RestaurantType } from './_model';
 import Image from 'next/image';
 import { categories } from 'app/_constants/restaurant';
+import Loader from 'app/_components/ui/Loader';
+import ErrorMessage from 'app/_components/ui/ErrorMessage';
 
 const RestaurantsPage = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -50,10 +52,9 @@ const RestaurantsPage = () => {
 
   if (isError) {
     return (
-      <div className="mx-auto h-screen w-full pt-[15%] text-center font-semibold text-red-500">
-        <div className="text-[40px]">❌</div>
-        문제가 발생하였습니다. 다시 시도해 주세요.
-      </div>
+      <ErrorMessage
+        message={'일시적인 문제가 발생하였습니다. 다시 시도해 주세요.'}
+      />
     );
   }
 
@@ -107,7 +108,7 @@ const RestaurantsPage = () => {
           ))
         )}
       </ul>
-      {(isFetching || hasNextPage || isFetchingNextPage) && '로딩 중...'}
+      {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
       <div className="w-full touch-none h-10 mb-10" ref={ref} />
     </div>
   );
