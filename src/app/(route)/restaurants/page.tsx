@@ -1,14 +1,14 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import useIntersectionObserver from 'app/_hooks/useIntersectionObserver';
-import { fetchRestaurants } from 'app/_lib/restaurants';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { RestaurantType } from './_model';
 import Image from 'next/image';
-import { CATEGORIES } from 'app/_constants/restaurant';
-import Loader from 'app/_components/ui/Loader';
-import ErrorMessage from 'app/_components/ui/ErrorMessage';
+import useIntersectionObserver from 'app/(feature)/_hooks/useIntersectionObserver';
+import { fetchRestaurants } from 'app/(feature)/_lib/restaurants';
+import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
+import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
+import Loader from 'app/(feature)/_components/ui/Loader';
 
 const RestaurantsPage = () => {
   const ref = useRef<HTMLDivElement | null>(null);

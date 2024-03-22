@@ -1,4 +1,4 @@
-import { RestaurantType } from 'app/restaurants/_model';
+import { RestaurantType } from 'app/(route)/restaurants/_model';
 import { create } from 'zustand';
 
 interface RestaurantState {

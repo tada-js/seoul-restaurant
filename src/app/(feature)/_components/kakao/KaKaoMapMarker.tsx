@@ -1,6 +1,6 @@
+import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
+import { useKaKaoMapStore } from 'app/(feature)/_store/kakaoMap';
 import { RestaurantType } from 'app/(route)/restaurants/_model';
-import { CATEGORIES } from 'app/_constants/restaurant';
-import { useKaKaoMapStore } from 'app/_store/kakaoMap';
 import proj4 from 'proj4';
 import { useCallback, useEffect } from 'react';
 

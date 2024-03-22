@@ -2,7 +2,10 @@
 
 'use client';
 
-import { useKaKaoMapStore, useLocationStore } from 'app/_store/kakaoMap';
+import {
+  useKaKaoMapStore,
+  useLocationStore,
+} from 'app/(feature)/_store/kakaoMap';
 import Script from 'next/script';
 import proj4 from 'proj4';
 

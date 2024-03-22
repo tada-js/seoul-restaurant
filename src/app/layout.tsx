@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
-import Navbar from './_components/Navbar';
-import Providers from './_components/Providers';
+import Navbar from './(feature)/_components/Navbar';
+import Providers from './(feature)/_components/Providers';
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값

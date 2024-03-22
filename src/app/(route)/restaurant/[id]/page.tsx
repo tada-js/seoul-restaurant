@@ -1,10 +1,10 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { fetchRestaurant } from 'app/_lib/restaurant';
+import KaKaoMapMarker from 'app/(feature)/_components/kakao/KaKaoMapMarker';
+import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
+import { fetchRestaurant } from 'app/(feature)/_lib/restaurant';
 import Image from 'next/image';
-import KakaoMap from 'app/_components/KakaoMap';
-import KaKaoMapMarker from 'app/_components/KaKaoMapMarker';
 
 interface Props {
   params: {

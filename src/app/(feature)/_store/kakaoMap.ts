@@ -1,9 +1,9 @@
+import { create } from 'zustand';
 import {
   DEFAULT_LAT,
   DEFAULT_LNG,
   DEFAULT_ZOOM,
-} from 'app/_constants/restaurant';
-import { create } from 'zustand';
+} from '../_constants/restaurant';
 
 interface KaKaoMapState {
   kakaoMap: any;

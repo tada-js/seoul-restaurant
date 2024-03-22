@@ -1,17 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import ModalPortal from './ui/ModalPortal';
-import {
-  useCurrentRestaurantStore,
-  useImageSrcStore,
-} from 'app/_store/restaurant';
+import ModalPortal from '../ui/ModalPortal';
 import { LiaRoadSolid } from 'react-icons/lia';
 import { AiOutlineClose } from 'react-icons/ai';
 import { HiOutlineMapPin } from 'react-icons/hi2';
 import { MdOutlineFoodBank } from 'react-icons/md';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import {
+  useCurrentRestaurantStore,
+  useImageSrcStore,
+} from 'app/(feature)/_store/restaurant';
 
 const KaKaoMapSimpleModal = () => {
   const restaurant = useCurrentRestaurantStore(
