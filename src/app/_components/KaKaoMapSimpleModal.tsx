@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import ModalPortal from './ModalPortal';
+import ModalPortal from './ui/ModalPortal';
 import {
   useCurrentRestaurantStore,
   useImageSrcStore,
@@ -65,7 +65,10 @@ const KaKaoMapSimpleModal = () => {
             <button
               className="w-full rounded-b-lg bg-[#2CBFB1] py-3 font-semibold text-white hover:bg-[#038C7F] focus:bg-[#038C7F]"
               type="button"
-              onClick={() => router.push(`/restaurant/${restaurant.id}`)}
+              onClick={() => {
+                router.push(`/restaurant/${restaurant.id}`);
+                setCurrentRestaurant(null);
+              }}
             >
               상세보기
             </button>
