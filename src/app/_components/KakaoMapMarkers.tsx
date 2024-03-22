@@ -3,7 +3,7 @@
 import proj4 from 'proj4';
 import { useCallback, useEffect } from 'react';
 import { RestaurantType } from 'app/(route)/restaurants/_model';
-import { categories } from 'app/_constants/restaurant';
+import { CATEGORIES } from 'app/_constants/restaurant';
 import { useKaKaoMapStore } from 'app/_store/kakaoMap';
 import {
   useCurrentRestaurantStore,
@@ -30,7 +30,7 @@ const KakaoMapMarkers = ({ restaurants }: Props) => {
 
     if (kakaoMap) {
       restaurants?.map((rest: RestaurantType) => {
-        const validCategories = categories;
+        const validCategories = CATEGORIES;
         let category = rest.category;
         let imageSrc = '';
 

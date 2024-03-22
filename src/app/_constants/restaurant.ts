@@ -1,4 +1,4 @@
-export const categories = [
+export const CATEGORIES = [
   '경양식',
   '기타',
   '김밥(도시락)',
@@ -12,3 +12,7 @@ export const categories = [
   '카페',
   '한식',
 ];
+
+export const DEFAULT_LAT = '37.497625203';
+export const DEFAULT_LNG = '127.03088379';
+export const DEFAULT_ZOOM = 3;

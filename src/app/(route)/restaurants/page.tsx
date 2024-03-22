@@ -6,7 +6,7 @@ import { fetchRestaurants } from 'app/_lib/restaurants';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { RestaurantType } from './_model';
 import Image from 'next/image';
-import { categories } from 'app/_constants/restaurant';
+import { CATEGORIES } from 'app/_constants/restaurant';
 import Loader from 'app/_components/ui/Loader';
 import ErrorMessage from 'app/_components/ui/ErrorMessage';
 
@@ -29,7 +29,7 @@ const RestaurantsPage = () => {
     getNextPageParam: (lastPage: any) =>
       lastPage.data?.length > 0 ? lastPage.page + 1 : undefined,
   });
-  const validCategories = categories;
+  const validCategories = CATEGORIES;
 
   const fetchNext = useCallback(async () => {
     const res = await fetchNextPage();
