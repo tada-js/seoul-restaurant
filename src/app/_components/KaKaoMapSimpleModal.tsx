@@ -11,13 +11,12 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { HiOutlineMapPin } from 'react-icons/hi2';
 import { MdOutlineFoodBank } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const KaKaoMapSimpleModal = () => {
-  const router = useRouter();
   const restaurant = useCurrentRestaurantStore(
     (state) => state.currentRestaurant
   );
-
   const setCurrentRestaurant = useCurrentRestaurantStore(
     (state) => state.setCurrentRestaurant
   );
@@ -62,16 +61,16 @@ const KaKaoMapSimpleModal = () => {
                 <MdOutlineFoodBank /> {restaurant?.category}
               </div>
             </div>
-            <button
-              className="w-full rounded-b-lg bg-[#2CBFB1] py-3 font-semibold text-white hover:bg-[#038C7F] focus:bg-[#038C7F]"
-              type="button"
+            <Link
+              href={`/restaurant/${restaurant.id}`}
+              className="flex justify-center items-center w-full rounded-b-lg bg-[#2CBFB1] py-3 font-semibold text-white hover:bg-[#038C7F] focus:bg-[#038C7F]"
               onClick={() => {
-                router.push(`/restaurant/${restaurant.id}`);
+                // router.push(`/restaurant/${restaurant.id}`);
                 setCurrentRestaurant(null);
               }}
             >
               상세보기
-            </button>
+            </Link>
           </div>
         </ModalPortal>
       )}
