@@ -8,6 +8,7 @@
     "_utils": "Utils",
     "_constants": "Constant",
     "_lib": "Lib",
-    "_assets": "Resource"
+    "_assets": "Resource",
+    "_model": "Class"
   }
 }
