@@ -27,7 +27,7 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
 
   return (
     <>
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 ">
         <div className="px-2 sm:px-0">
           <div className="flex gap-6 justify-center items-center">
             <div>
@@ -72,7 +72,7 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
       </div>
       {isSuccess && (
         <>
-          <div className="overflow-hidden w-full mb-20 max-w-5xl mx-auto max-h-[600px]">
+          <div className="overflow-hidden w-full mb-20 mx-auto max-h-[600px]">
             <KakaoMap lat={restautant?.lat} lng={restautant?.lng} zoom={1} />
             <KaKaoMapMarker restautant={restautant} />
           </div>

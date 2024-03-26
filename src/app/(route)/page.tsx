@@ -5,11 +5,11 @@ import KakaoMapMarkers from 'app/(feature)/_components/kakao/KakaoMapMarkers';
 export default async function Home() {
   const restaurants = await getData();
   return (
-    <main>
+    <>
       <KakaoMap />
       <KakaoMapMarkers restaurants={restaurants} />
       <KaKaoMapSimpleModal />
-    </main>
+    </>
   );
 }
 

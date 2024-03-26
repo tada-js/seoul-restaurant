@@ -22,13 +22,15 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={notoSansKr.className}>
-        <header>
-          <Navbar />
-        </header>
+    <html lang="en" className={notoSansKr.className}>
+      <body className="bg-neutral-50">
         <Providers>
-          <main className="pt-14">{children}</main>
+          <header className="max-w-screen-xl mx-auto">
+            <Navbar />
+          </header>
+          <main className="pt-14 max-w-screen-xl mx-auto w-full bg-white">
+            {children}
+          </main>
         </Providers>
         <div id="portal" />
       </body>

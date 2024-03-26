@@ -59,7 +59,7 @@ const RestaurantsPage = () => {
   }
 
   return (
-    <div className="px-4 md:max-w-4xl mx-auto py-8">
+    <div className="w-full px-4  mx-auto py-8">
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <div>Loading.....</div>
