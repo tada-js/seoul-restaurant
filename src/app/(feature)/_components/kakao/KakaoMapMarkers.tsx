@@ -2,20 +2,20 @@
 
 import proj4 from 'proj4';
 import { useCallback, useEffect } from 'react';
-import { useKaKaoMapStore } from 'app/(feature)/_store/kakaoMap';
 import {
   useCurrentRestaurantStore,
   useImageSrcStore,
 } from 'app/(feature)/_store/restaurant';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
+import { useKakaoMapStore } from 'app/(feature)/_store/kakaoMap';
 
 interface Props {
   restaurants: RestaurantType[];
 }
 
 const KakaoMapMarkers = ({ restaurants }: Props) => {
-  const kakaoMap = useKaKaoMapStore().kakaoMap;
+  const kakaoMap = useKakaoMapStore().kakaoMap;
   const setCurrentRestaurantStore = useCurrentRestaurantStore(
     (state) => state.setCurrentRestaurant
   );

@@ -3,7 +3,7 @@
 'use client';
 
 import {
-  useKaKaoMapStore,
+  useKakaoMapStore,
   useLocationStore,
 } from 'app/(feature)/_store/kakaoMap';
 import Script from 'next/script';
@@ -22,7 +22,7 @@ interface Props {
 }
 
 const KakaoMap = ({ lat, lng, zoom }: Props) => {
-  const setKaKaoMap = useKaKaoMapStore((state) => state.setKaKaoMap);
+  const setKakaoMap = useKakaoMapStore((state) => state.setKakaoMap);
   const location = useLocationStore((state) => state.location);
   let [wgsLat, wgsLng]: null[] | number[] = [null, null];
 
@@ -47,7 +47,7 @@ const KakaoMap = ({ lat, lng, zoom }: Props) => {
       };
 
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
-      setKaKaoMap(map);
+      setKakaoMap(map);
     });
   };
 

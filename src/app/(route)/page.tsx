@@ -1,4 +1,4 @@
-import KaKaoMapSimpleModal from 'app/(feature)/_components/kakao/KaKaoMapSimpleModal';
+import KakaoMapSimpleModal from 'app/(feature)/_components/kakao/KakaoMapSimpleModal';
 import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
 import KakaoMapMarkers from 'app/(feature)/_components/kakao/KakaoMapMarkers';
 
@@ -8,7 +8,7 @@ export default async function Home() {
     <>
       <KakaoMap />
       <KakaoMapMarkers restaurants={restaurants} />
-      <KaKaoMapSimpleModal />
+      <KakaoMapSimpleModal />
     </>
   );
 }

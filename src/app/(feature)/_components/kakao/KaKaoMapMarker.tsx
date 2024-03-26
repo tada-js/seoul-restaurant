@@ -1,7 +1,7 @@
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
-import { useKaKaoMapStore } from 'app/(feature)/_store/kakaoMap';
+import { useKakaoMapStore } from 'app/(feature)/_store/kakaoMap';
 import proj4 from 'proj4';
 import { useCallback, useEffect } from 'react';
 
@@ -9,8 +9,8 @@ interface Props {
   restautant: RestaurantType;
 }
 
-const KaKaoMapMarker = ({ restautant }: Props) => {
-  const kakaoMap = useKaKaoMapStore((state) => state.kakaoMap);
+const KakaoMapMarker = ({ restautant }: Props) => {
+  const kakaoMap = useKakaoMapStore((state) => state.kakaoMap);
   const imageSrc = useImageSrc(restautant.category);
 
   const loadKakoMarker = useCallback(() => {
@@ -87,4 +87,4 @@ const KaKaoMapMarker = ({ restautant }: Props) => {
   return <></>;
 };
 
-export default KaKaoMapMarker;
+export default KakaoMapMarker;

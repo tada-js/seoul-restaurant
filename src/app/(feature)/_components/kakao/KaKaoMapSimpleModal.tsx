@@ -12,7 +12,7 @@ import {
   useImageSrcStore,
 } from 'app/(feature)/_store/restaurant';
 
-const KaKaoMapSimpleModal = () => {
+const KakaoMapSimpleModal = () => {
   const restaurant = useCurrentRestaurantStore(
     (state) => state.currentRestaurant
   );
@@ -77,4 +77,4 @@ const KaKaoMapSimpleModal = () => {
   );
 };
 
-export default KaKaoMapSimpleModal;
+export default KakaoMapSimpleModal;

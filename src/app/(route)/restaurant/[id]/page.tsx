@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import KaKaoMapMarker from 'app/(feature)/_components/kakao/KaKaoMapMarker';
+import KakaoMapMarker from 'app/(feature)/_components/kakao/KakaoMapMarker';
 import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
 import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
 import { fetchRestaurant } from 'app/(feature)/_lib/restaurant';
@@ -76,7 +76,7 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
         <>
           <div className="overflow-hidden w-full mb-20 mx-auto max-h-[600px]">
             <KakaoMap lat={restautant?.lat} lng={restautant?.lng} zoom={1} />
-            <KaKaoMapMarker restautant={restautant} />
+            <KakaoMapMarker restautant={restautant} />
           </div>
         </>
       )}

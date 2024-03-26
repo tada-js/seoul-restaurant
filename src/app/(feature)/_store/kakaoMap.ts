@@ -5,9 +5,9 @@ import {
   DEFAULT_ZOOM,
 } from '../_constants/restaurant';
 
-interface KaKaoMapState {
+interface KakaoMapState {
   kakaoMap: any;
-  setKaKaoMap(map: any): void;
+  setKakaoMap(map: any): void;
 }
 
 interface Location {
@@ -26,9 +26,9 @@ interface LocationState {
   ) => void;
 }
 
-export const useKaKaoMapStore = create<KaKaoMapState>((set) => ({
+export const useKakaoMapStore = create<KakaoMapState>((set) => ({
   kakaoMap: null,
-  setKaKaoMap(kakaoMap) {
+  setKakaoMap(kakaoMap) {
     set({ kakaoMap });
   },
 }));
