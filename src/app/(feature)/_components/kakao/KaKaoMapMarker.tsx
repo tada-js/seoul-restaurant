@@ -1,4 +1,5 @@
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
+import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
 import { useKaKaoMapStore } from 'app/(feature)/_store/kakaoMap';
 import proj4 from 'proj4';
@@ -10,6 +11,7 @@ interface Props {
 
 const KaKaoMapMarker = ({ restautant }: Props) => {
   const kakaoMap = useKaKaoMapStore((state) => state.kakaoMap);
+  const imageSrc = useImageSrc(restautant.category);
 
   const loadKakoMarker = useCallback(() => {
     if (kakaoMap && restautant) {
@@ -18,16 +20,6 @@ const KaKaoMapMarker = ({ restautant }: Props) => {
         'EPSG:2097',
         '+proj=tmerc +lat_0=38 +lon_0=127.0028902777778 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +towgs84=-146.43,507.89,681.46 +units=m +no_defs'
       );
-      const validCategories = CATEGORIES;
-      let category = restautant.category;
-      let imageSrc = '';
-
-      if (category && !validCategories.includes(category)) {
-        // 카테고리 항목에 없는 음식 종류라면 기타로 지정
-        category = '기타';
-      }
-
-      imageSrc = category ? `/images/${category}.png` : `/images/기타.png`; // 마커이미지 주소
 
       const imageSize = new window.kakao.maps.Size(35, 35); // 마커이미지 크기
       const imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션(이미지 좌표 설정)
