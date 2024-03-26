@@ -2,13 +2,13 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { RestaurantType } from './_model';
 import Image from 'next/image';
 import useIntersectionObserver from 'app/(feature)/_hooks/useIntersectionObserver';
 import { fetchRestaurants } from 'app/(feature)/_lib/restaurants';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 import Loader from 'app/(feature)/_components/ui/Loader';
+import { RestaurantType } from 'app/(feature)/_model/restaurant';
 
 const RestaurantsPage = () => {
   const ref = useRef<HTMLDivElement | null>(null);

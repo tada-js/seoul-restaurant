@@ -2,13 +2,13 @@
 
 import proj4 from 'proj4';
 import { useCallback, useEffect } from 'react';
-import { RestaurantType } from 'app/(route)/restaurants/_model';
 import { useKaKaoMapStore } from 'app/(feature)/_store/kakaoMap';
 import {
   useCurrentRestaurantStore,
   useImageSrcStore,
 } from 'app/(feature)/_store/restaurant';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
+import { RestaurantType } from 'app/(feature)/_model/restaurant';
 
 interface Props {
   restaurants: RestaurantType[];

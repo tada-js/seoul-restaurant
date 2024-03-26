@@ -1,5 +1,5 @@
-import { RestaurantType } from 'app/(route)/restaurants/_model';
 import { create } from 'zustand';
+import { RestaurantType } from '../_model/restaurant';
 
 interface RestaurantState {
   currentRestaurant: RestaurantType | null;
