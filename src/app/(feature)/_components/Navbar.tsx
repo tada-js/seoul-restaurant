@@ -1,9 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { CiViewList, CiUser, CiHeart, CiSaveUp2 } from 'react-icons/ci';
 
 const Navbar = () => {
+  const pathName = usePathname();
+  const isSelected = (path: string) =>
+    pathName === path ? 'text-[#2CBFB1]' : 'text-gray-700';
+
   return (
     <>
       <div className="max-w-screen-xl fixed top-0 z-[100] flex h-[60px] w-full items-center justify-between bg-white shadow-sm">
@@ -15,32 +20,54 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="md:px-20 p-1 max-w-screen-xl fixed bottom-0 z-[100] w-full h-[60px] bg-white border-t text-gray-700">
-        <div className="flex items-center justify-between px-6">
-          <div className="flex flex-col justify-center items-center">
-            <CiViewList className="text-4xl" />
-            <Link className="text-sm" href="/restaurants">
-              식당 목록
-            </Link>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <CiSaveUp2 className="text-4xl" />
-            <Link className="text-sm" href="/user/my">
-              식당 등록
-            </Link>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <CiHeart className="text-4xl" />
-            <Link className="text-sm" href="/user/my">
-              찜한 식당
-            </Link>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <CiUser className="text-4xl" />
-            <Link className="text-sm" href="/user/my">
-              마이페이지
-            </Link>
-          </div>
-        </div>
+        <nav className="px-6">
+          <ul className="flex items-center justify-between">
+            <li key="/restaurants">
+              <Link
+                className={`text-sm flex flex-col items-center ${isSelected(
+                  '/restaurants'
+                )}`}
+                href="/restaurants"
+              >
+                <CiViewList className="text-4xl" />
+                식당 목록
+              </Link>
+            </li>
+            <li key="/a">
+              <Link
+                className={`text-sm flex flex-col items-center ${isSelected(
+                  '/a'
+                )}`}
+                href="/a"
+              >
+                <CiSaveUp2 className="text-4xl" />
+                식당 등록
+              </Link>
+            </li>
+            <li key="/b">
+              <Link
+                className={`text-sm flex flex-col items-center ${isSelected(
+                  '/b'
+                )}`}
+                href="/b"
+              >
+                <CiHeart className="text-4xl" />
+                찜한 식당
+              </Link>
+            </li>
+            <li key="/user/my">
+              <Link
+                className={`text-sm flex flex-col items-center ${isSelected(
+                  '/user/my'
+                )}`}
+                href="/user/my"
+              >
+                <CiUser className="text-4xl" />
+                마이페이지
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );
