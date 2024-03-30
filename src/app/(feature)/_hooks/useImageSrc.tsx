@@ -9,8 +9,10 @@ const useImageSrc = (category: RestaurantType['category']) => {
     category = '기타';
   }
 
-  // 이미지 경로 반환
-  return `/images/${category}.png`;
+  if (category) {
+    // 이미지 경로 반환
+    return `/images/${category}.png`;
+  }
 };
 
 export default useImageSrc;
