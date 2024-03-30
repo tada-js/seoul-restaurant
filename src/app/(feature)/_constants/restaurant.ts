@@ -13,6 +13,6 @@ export const CATEGORIES = [
   '한식',
 ];
 
-export const DEFAULT_LAT = '37.497625203';
-export const DEFAULT_LNG = '127.03088379';
+export const DEFAULT_LAT = '37.50068961381609';
+export const DEFAULT_LNG = '127.0268364137054';
 export const DEFAULT_ZOOM = 3;
