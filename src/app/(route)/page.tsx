@@ -1,6 +1,6 @@
-import KakaoMapSimpleModal from 'app/(feature)/_components/kakao/KakaoMapSimpleModal';
 import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
 import KakaoMapMarkers from 'app/(feature)/_components/kakao/KakaoMapMarkers';
+import KakaoMapSimpleModal from '../(feature)/_components/kakao/KakaoMapSimpleModal';
 
 export default async function Home() {
   const restaurants = await getData();
