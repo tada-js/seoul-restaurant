@@ -59,7 +59,7 @@ const RestaurantsPage = () => {
   }
 
   return (
-    <div className="w-full px-4  mx-auto py-8">
+    <div className="w-full px-4 py-8 mx-auto">
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <div>Loading.....</div>
@@ -74,7 +74,7 @@ const RestaurantsPage = () => {
                   }
                   return (
                     <li
-                      className="flex justify-between gap-x-6 py-5"
+                      className="flex justify-between py-5 gap-x-6"
                       key={rest.id}
                     >
                       <div className="flex gap-x-4">
@@ -88,7 +88,7 @@ const RestaurantsPage = () => {
                           <div className="text-sm font-semibold leading-6 text-gray-900">
                             {rest?.name}
                           </div>
-                          <div className="mt-1 text-xs truncate font-semibold leading-5 text-gray-500">
+                          <div className="mt-1 text-xs font-semibold leading-5 text-gray-500 truncate">
                             {rest?.category}
                           </div>
                         </div>
@@ -97,7 +97,7 @@ const RestaurantsPage = () => {
                         <div className="text-sm font-semibold leading-6 text-gray-900">
                           {rest?.address}
                         </div>
-                        <div className="mt-1 text-xs truncate font-semibold leading-5 text-gray-500">
+                        <div className="mt-1 text-xs font-semibold leading-5 text-gray-500 truncate">
                           {rest?.rodaddress}
                         </div>
                       </div>
@@ -109,7 +109,7 @@ const RestaurantsPage = () => {
         )}
       </ul>
       {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
-      <div className="w-full touch-none h-10 mb-10" ref={ref} />
+      <div className="w-full h-10 mb-10 touch-none" ref={ref} />
     </div>
   );
 };
