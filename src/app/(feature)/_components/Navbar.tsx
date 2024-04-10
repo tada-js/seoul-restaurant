@@ -3,12 +3,14 @@
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { CiViewList, CiUser, CiHeart, CiSaveUp2 } from 'react-icons/ci';
 
 const Navbar = () => {
   const pathName = usePathname();
-  const isSelected = (path: string) =>
-    pathName === path ? 'text-[#2CBFB1]' : 'text-gray-700';
+  const isSelected = (path: string) => {
+    return pathName === path ? 'text-[#2CBFB1]' : 'text-gray-700';
+  };
   const { data: session } = useSession();
 
   return (
@@ -38,7 +40,7 @@ const Navbar = () => {
           <ul className="flex items-center justify-between">
             <li key="/restaurants">
               <Link
-                className={`text-sm flex flex-col items-center hover:text-gray-500 focus:text-gray-500 ${isSelected(
+                className={`text-sm flex flex-col items-center hover:text-gray-500 ${isSelected(
                   '/restaurants'
                 )}`}
                 href="/restaurants"
@@ -49,7 +51,7 @@ const Navbar = () => {
             </li>
             <li key="/a">
               <Link
-                className={`text-sm flex flex-col items-center hover:text-gray-500 focus:text-gray-500 ${isSelected(
+                className={`text-sm flex flex-col items-center hover:text-gray-500  ${isSelected(
                   '/a'
                 )}`}
                 href="/a"
@@ -60,7 +62,7 @@ const Navbar = () => {
             </li>
             <li key="/b">
               <Link
-                className={`text-sm flex flex-col items-center hover:text-gray-500 focus:text-gray-500 ${isSelected(
+                className={`text-sm flex flex-col items-center hover:text-gray-500  ${isSelected(
                   '/b'
                 )}`}
                 href="/b"
@@ -71,7 +73,7 @@ const Navbar = () => {
             </li>
             <li key="/user/my">
               <Link
-                className={`text-sm flex flex-col items-center hover:text-gray-500 focus:text-gray-500 ${isSelected(
+                className={`text-sm flex flex-col items-center hover:text-gray-500 ${isSelected(
                   '/user/my'
                 )}`}
                 href="/user/my"
