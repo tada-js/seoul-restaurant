@@ -9,6 +9,11 @@ import { Adapter } from 'next-auth/adapters';
 const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt',
+    maxAge: 60 * 60 * 24,
+    updateAge: 60 * 60 * 1,
+  },
   adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
