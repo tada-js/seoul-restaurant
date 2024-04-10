@@ -7,7 +7,7 @@ import useIntersectionObserver from 'app/(feature)/_hooks/useIntersectionObserve
 import { fetchRestaurants } from 'app/(feature)/_lib/restaurants';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
-import Loader from 'app/(feature)/_components/ui/Loader';
+import PingLoading from 'app/(feature)/_components/ui/PingLoading';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
 
 const RestaurantsPage = () => {
@@ -108,7 +108,7 @@ const RestaurantsPage = () => {
           ))
         )}
       </ul>
-      {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
+      {(isFetching || hasNextPage || isFetchingNextPage) && <PingLoading />}
       <div className="w-full h-10 mb-10 touch-none" ref={ref} />
     </div>
   );
