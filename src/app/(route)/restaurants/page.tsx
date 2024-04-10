@@ -9,6 +9,7 @@ import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 import PingLoading from 'app/(feature)/_components/ui/PingLoading';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
+import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
 
 const RestaurantsPage = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -62,7 +63,7 @@ const RestaurantsPage = () => {
     <div className="w-full px-4 py-8 mx-auto">
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
-          <div>Loading.....</div>
+          <PulseLoading />
         ) : (
           restaurants?.pages?.map((page, index) => (
             <React.Fragment key={index}>
