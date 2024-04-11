@@ -8,7 +8,10 @@ import {
 } from 'app/(feature)/_store/restaurant';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
-import { useKakaoMapStore } from 'app/(feature)/_store/kakaoMap';
+import {
+  useKakaoMapStore,
+  useLocationStore,
+} from 'app/(feature)/_store/kakaoMap';
 
 interface Props {
   restaurants: RestaurantType[];
@@ -16,10 +19,12 @@ interface Props {
 
 const KakaoMapMarkers = ({ restaurants }: Props) => {
   const kakaoMap = useKakaoMapStore().kakaoMap;
-  const setCurrentRestaurantStore = useCurrentRestaurantStore(
+  const setCurrentRestaurant = useCurrentRestaurantStore(
     (state) => state.setCurrentRestaurant
   );
   const setImageSrc = useImageSrcStore((state) => state.setImageSrc);
+  const location = useLocationStore((state) => state.location);
+  const setLocation = useLocationStore((state) => state.setLocation);
 
   const loadKakaoMarkers = useCallback(() => {
     // Proj4js에 TM 좌표계와 WGS84 좌표계 정의 추가
@@ -96,12 +101,30 @@ const KakaoMapMarkers = ({ restaurants }: Props) => {
 
         // 선택한 가게 저장
         window.kakao.maps.event.addListener(marker, 'click', function () {
-          setCurrentRestaurantStore(rest);
+          const currentTmCoords = [Number(rest.lng), Number(rest.lat)];
+          const currentWgs84Coords = proj4(
+            'EPSG:2097',
+            'EPSG:4326',
+            currentTmCoords
+          );
+          setCurrentRestaurant(rest);
           setImageSrc(imageSrc);
+          setLocation({
+            ...location,
+            lat: String(currentWgs84Coords[1]),
+            lng: String(currentWgs84Coords[0]),
+          });
         });
       });
     }
-  }, [kakaoMap, restaurants, setCurrentRestaurantStore, setImageSrc]);
+  }, [
+    kakaoMap,
+    location,
+    restaurants,
+    setCurrentRestaurant,
+    setImageSrc,
+    setLocation,
+  ]);
 
   useEffect(() => {
     loadKakaoMarkers();

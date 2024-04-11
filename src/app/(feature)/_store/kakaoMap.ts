@@ -19,11 +19,7 @@ interface Location {
 interface LocationState {
   location: Location;
 
-  setLocation: (
-    lat: LocationState['location']['lat'],
-    lng: LocationState['location']['lng'],
-    zoom: LocationState['location']['zoom']
-  ) => void;
+  setLocation: ({ lat, lng, zoom }: Location) => void;
 }
 
 export const useKakaoMapStore = create<KakaoMapState>((set) => ({
@@ -39,7 +35,7 @@ export const useLocationStore = create<LocationState>((set) => ({
     lng: DEFAULT_LNG,
     zoom: DEFAULT_ZOOM,
   },
-  setLocation(lat?: string | null, lng?: string | null, zoom?: number) {
+  setLocation({ lat, lng, zoom }) {
     set((state) => ({
       location: {
         lat: lat ?? state.location.lat,
