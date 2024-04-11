@@ -10,8 +10,10 @@ import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 import PingLoading from 'app/(feature)/_components/ui/PingLoading';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
 import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
+import { useRouter } from 'next/navigation';
 
 const RestaurantsPage = () => {
+  const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
   const intersectionObserver = useIntersectionObserver(ref, {});
   const isIntersecting = !!intersectionObserver?.isIntersecting;
@@ -75,8 +77,9 @@ const RestaurantsPage = () => {
                   }
                   return (
                     <li
-                      className="flex justify-between py-5 gap-x-6"
+                      className="flex justify-between py-5 gap-x-6 cursor-pointer hover:bg-teal-50 focus:bg-teal-50"
                       key={rest.id}
+                      onClick={() => router.push(`/restaurant/${rest.id}`)}
                     >
                       <div className="flex gap-x-4">
                         <Image
