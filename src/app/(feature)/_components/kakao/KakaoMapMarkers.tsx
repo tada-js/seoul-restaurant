@@ -23,7 +23,6 @@ const KakaoMapMarkers = ({ restaurants }: Props) => {
     (state) => state.setCurrentRestaurant
   );
   const setImageSrc = useImageSrcStore((state) => state.setImageSrc);
-  const location = useLocationStore((state) => state.location);
   const setLocation = useLocationStore((state) => state.setLocation);
 
   const loadKakaoMarkers = useCallback(() => {
@@ -110,21 +109,13 @@ const KakaoMapMarkers = ({ restaurants }: Props) => {
           setCurrentRestaurant(rest);
           setImageSrc(imageSrc);
           setLocation({
-            ...location,
             lat: String(currentWgs84Coords[1]),
             lng: String(currentWgs84Coords[0]),
           });
         });
       });
     }
-  }, [
-    kakaoMap,
-    location,
-    restaurants,
-    setCurrentRestaurant,
-    setImageSrc,
-    setLocation,
-  ]);
+  }, [kakaoMap, restaurants, setCurrentRestaurant, setImageSrc, setLocation]);
 
   useEffect(() => {
     loadKakaoMarkers();
