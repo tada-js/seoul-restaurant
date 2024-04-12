@@ -13,7 +13,6 @@ import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
 import { useRouter } from 'next/navigation';
 import SearchFilter from 'app/(feature)/_components/SearchFilter';
 import { useSearchFilterStore } from 'app/(feature)/_store/restaurant';
-import axios from 'axios';
 
 const RestaurantsPage = () => {
   const validCategories = CATEGORIES;
