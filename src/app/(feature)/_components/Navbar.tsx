@@ -5,18 +5,21 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { CiViewList, CiUser, CiHeart, CiSaveUp2 } from 'react-icons/ci';
+import { MAINCOLOR } from '../_constants/color';
 
 const Navbar = () => {
   const pathName = usePathname();
   const isSelected = (path: string) => {
-    return pathName === path ? 'text-[#2CBFB1]' : 'text-gray-700';
+    return pathName === path ? `text-[${MAINCOLOR}]` : 'text-gray-700';
   };
   const { data: session } = useSession();
 
   return (
     <>
       <div className="max-w-screen-xl fixed top-0 z-[100] flex h-[60px] w-full items-center justify-between bg-white shadow-sm">
-        <div className="cursor-pointer px-[18px] text-lg font-extrabold text-[#2CBFB1]">
+        <div
+          className={`cursor-pointer px-[18px] text-lg font-extrabold text-[${MAINCOLOR}]`}
+        >
           <Link href="/">서울식당</Link>
         </div>
         {session ? (

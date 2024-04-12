@@ -11,6 +11,7 @@ import {
   useCurrentRestaurantStore,
   useImageSrcStore,
 } from 'app/(feature)/_store/restaurant';
+import { MAINCOLOR, SUBCOLOR } from 'app/(feature)/_constants/color';
 
 const KakaoMapSimpleModal = () => {
   const restaurant = useCurrentRestaurantStore(
@@ -62,9 +63,8 @@ const KakaoMapSimpleModal = () => {
             </div>
             <Link
               href={`/restaurant/${restaurant.id}`}
-              className="flex justify-center items-center w-full rounded-b-lg bg-[#2CBFB1] py-3 font-semibold text-white hover:bg-[#038C7F] focus:bg-[#038C7F]"
+              className={`flex justify-center items-center w-full rounded-b-lg bg-[${MAINCOLOR}] py-3 font-semibold text-white hover:bg-[${SUBCOLOR}] focus:bg-[${SUBCOLOR}]`}
               onClick={() => {
-                // router.push(`/restaurant/${restaurant.id}`);
                 setCurrentRestaurant(null);
               }}
             >

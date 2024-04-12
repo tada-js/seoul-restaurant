@@ -1,3 +1,4 @@
+import { MAINCOLOR } from 'app/(feature)/_constants/color';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
@@ -52,7 +53,7 @@ const KakaoMapMarker = ({ restautant }: Props) => {
       marker.setMap(kakaoMap);
 
       // 커서 오버시 마커 위에 표시할 인포윈도우 생성
-      const content = `<div class="bg-[#2CBFB1] text-white flex items-center justify-center  h-8 rounded-md px-3 leading-6">${restautant?.name}</div>`;
+      const content = `<div class="bg-[${MAINCOLOR}] text-white flex items-center justify-center  h-8 rounded-md px-3 leading-6">${restautant?.name}</div>`;
 
       // 커스텀 오버레이 생성
       const customOverlay = new window.kakao.maps.CustomOverlay({
