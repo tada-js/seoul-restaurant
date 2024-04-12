@@ -8,6 +8,8 @@ import {
 } from 'app/(feature)/_store/kakaoMap';
 import Script from 'next/script';
 import proj4 from 'proj4';
+import { useState } from 'react';
+import PingLoading from '../ui/PingLoading';
 
 declare global {
   interface Window {
@@ -25,6 +27,7 @@ const KakaoMap = ({ lat, lng, zoom }: Props) => {
   const setKakaoMap = useKakaoMapStore((state) => state.setKakaoMap);
   const location = useLocationStore((state) => state.location);
   let [wgsLat, wgsLng]: null[] | number[] = [null, null];
+  const [isMapLoading, setIsMapLoading] = useState(true);
 
   if (lat && lng) {
     proj4.defs(
@@ -48,11 +51,13 @@ const KakaoMap = ({ lat, lng, zoom }: Props) => {
 
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
       setKakaoMap(map);
+      setIsMapLoading(false);
     });
   };
 
   return (
     <>
+      {isMapLoading && <PingLoading mapLoading={true} />}
       <div id="map" className="w-full h-screen"></div>
       <Script
         src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_CLIENT}&autoload=false`}
