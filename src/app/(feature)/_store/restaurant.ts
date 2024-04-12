@@ -11,6 +11,14 @@ interface CategoryImageSrcState {
   setImageSrc(imageSrc: string): void;
 }
 
+interface SearchFilterState {
+  search: {
+    q?: string;
+    district?: string;
+  } | null;
+  setSearch: (search: SearchFilterState['search']) => void;
+}
+
 export const useCurrentRestaurantStore = create<RestaurantState>((set) => ({
   currentRestaurant: null,
   setCurrentRestaurant(currentRestaurant) {
@@ -23,4 +31,9 @@ export const useImageSrcStore = create<CategoryImageSrcState>((set) => ({
   setImageSrc(imageSrc) {
     set({ imageSrc });
   },
+}));
+
+export const useSearchFilterStore = create<SearchFilterState>((set) => ({
+  search: null,
+  setSearch: (search) => set({ search }),
 }));

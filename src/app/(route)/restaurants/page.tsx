@@ -11,12 +11,23 @@ import PingLoading from 'app/(feature)/_components/ui/PingLoading';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
 import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
 import { useRouter } from 'next/navigation';
+import SearchFilter from 'app/(feature)/_components/SearchFilter';
+import { useSearchFilterStore } from 'app/(feature)/_store/restaurant';
+import axios from 'axios';
 
 const RestaurantsPage = () => {
+  const validCategories = CATEGORIES;
+
   const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
   const intersectionObserver = useIntersectionObserver(ref, {});
+  const search = useSearchFilterStore((state) => state.search);
+  const searchParams = {
+    q: search?.q,
+    district: search?.district,
+  };
   const isIntersecting = !!intersectionObserver?.isIntersecting;
+
   const {
     data: restaurants,
     isFetching,
@@ -26,13 +37,12 @@ const RestaurantsPage = () => {
     isError,
     isLoading,
   } = useInfiniteQuery({
-    queryKey: ['projects'],
-    queryFn: fetchRestaurants,
+    queryKey: ['restaurants', searchParams],
+    queryFn: () => fetchRestaurants({ searchParams }),
     initialPageParam: 1,
     getNextPageParam: (lastPage: any) =>
       lastPage.data?.length > 0 ? lastPage.page + 1 : undefined,
   });
-  const validCategories = CATEGORIES;
 
   const fetchNext = useCallback(async () => {
     const res = await fetchNextPage();
@@ -63,6 +73,7 @@ const RestaurantsPage = () => {
 
   return (
     <div className="w-full px-4 py-8 mx-auto">
+      <SearchFilter />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <PulseLoading />
