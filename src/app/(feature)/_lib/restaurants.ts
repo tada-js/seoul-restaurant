@@ -1,7 +1,7 @@
 interface FetchRestaurantsParams {
   pageParam?: number;
   limit?: number;
-  searchParams: { q?: string; district?: string };
+  searchParams: { q?: string | null; district?: string };
 }
 
 const objectToParams = (object: Object): URLSearchParams => {

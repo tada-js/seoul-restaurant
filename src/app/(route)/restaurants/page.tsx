@@ -13,6 +13,7 @@ import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
 import { useRouter } from 'next/navigation';
 import SearchFilter from 'app/(feature)/_components/SearchFilter';
 import { useSearchFilterStore } from 'app/(feature)/_store/restaurant';
+import useDebounce from 'app/(feature)/_hooks/useDebounce';
 
 const RestaurantsPage = () => {
   const validCategories = CATEGORIES;
@@ -21,8 +22,10 @@ const RestaurantsPage = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const intersectionObserver = useIntersectionObserver(ref, {});
   const search = useSearchFilterStore((state) => state.search);
+  const debouncedSearchQ = useDebounce(search?.q);
+
   const searchParams = {
-    q: search?.q,
+    q: debouncedSearchQ,
     district: search?.district,
   };
   const isIntersecting = !!intersectionObserver?.isIntersecting;
