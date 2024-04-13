@@ -5,12 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { CiViewList, CiUser, CiHeart, CiSaveUp2 } from 'react-icons/ci';
-import { MAINCOLOR } from '../_constants/color';
 
 const Navbar = () => {
   const pathName = usePathname();
   const isSelected = (path: string) => {
-    return pathName === path ? `text-[${MAINCOLOR}]` : 'text-gray-700';
+    return pathName === path ? `text-[#2CBFB1]` : 'text-gray-700';
   };
   const { data: session } = useSession();
 
@@ -18,7 +17,7 @@ const Navbar = () => {
     <>
       <div className="max-w-screen-xl fixed top-0 z-[100] flex h-[60px] w-full items-center justify-between bg-white shadow-sm">
         <div
-          className={`cursor-pointer px-[18px] text-lg font-extrabold text-[${MAINCOLOR}]`}
+          className={`cursor-pointer px-[18px] text-lg font-extrabold text-[#2CBFB1]`}
         >
           <Link href="/">서울식당</Link>
         </div>
@@ -55,9 +54,9 @@ const Navbar = () => {
             <li key="/a">
               <Link
                 className={`text-sm flex flex-col items-center hover:text-gray-500  ${isSelected(
-                  '/a'
+                  '/restaurant/new'
                 )}`}
-                href="/a"
+                href="/restaurant/new"
               >
                 <CiSaveUp2 className="text-4xl" />
                 식당 등록
