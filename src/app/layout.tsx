@@ -28,7 +28,7 @@ export default function RootLayout({
           <header className="max-w-screen-xl mx-auto">
             <Navbar />
           </header>
-          <main className="pt-14 max-w-screen-xl mx-auto w-full bg-white">
+          <main className="max-w-screen-xl mx-auto w-full bg-white">
             {children}
           </main>
         </Providers>

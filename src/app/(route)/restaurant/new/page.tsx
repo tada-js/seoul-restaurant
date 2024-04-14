@@ -18,7 +18,7 @@ const RestaurantRegisterPage = () => {
   } = useForm<RestaurantType>();
   return (
     <form
-      className="px-4 md:max-w-6xl mx-auto py-8"
+      className="pt-24 px-4 mx-auto py-8 overflow-hidden h-screen"
       onSubmit={handleSubmit(async (data) => {
         try {
           const res = await fetch('/api/restaurant', {

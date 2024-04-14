@@ -74,7 +74,7 @@ const RestaurantsPage = () => {
   }
 
   return (
-    <div className="w-full px-4 py-8 mx-auto">
+    <div className="pt-20 w-full px-4 py-8 mx-auto">
       <SearchFilter />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
