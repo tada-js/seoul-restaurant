@@ -40,7 +40,8 @@ const RestaurantsPage = () => {
     isLoading,
   } = useInfiniteQuery({
     queryKey: ['restaurants', searchParams],
-    queryFn: () => fetchRestaurants({ searchParams }),
+    queryFn: ({ pageParam = 1 }) =>
+      fetchRestaurants({ pageParam, searchParams }),
     initialPageParam: 1,
     getNextPageParam: (lastPage: any) =>
       lastPage.data?.length > 0 ? lastPage.page + 1 : undefined,
