@@ -22,6 +22,7 @@ const KakaoMapMarker = ({ restautant }: Props) => {
 
       const imageSize = new window.kakao.maps.Size(35, 35); // 마커이미지 크기
       const imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션(이미지 좌표 설정)
+      let markerPosition = null;
 
       // 마커의 이미지정보를 가지고 있는 마커이미지를 생성
       const markerImage = new window.kakao.maps.MarkerImage(
@@ -29,17 +30,26 @@ const KakaoMapMarker = ({ restautant }: Props) => {
         imageSize,
         imageOption
       );
-      // TM 좌표 예시 -> x, y 좌표(lng x, lat y)
-      const tmCoords = [Number(restautant.lng), Number(restautant.lat)];
 
-      // TM -> WGS84 좌표 변환
-      const wgs84Coords = proj4('EPSG:2097', 'EPSG:4326', tmCoords);
+      // wgs 값이 false라면 TM 좌표계이기 때문에 WGS로 변환
+      if (restautant.wgs) {
+        markerPosition = new window.kakao.maps.LatLng(
+          Number(restautant.lat),
+          Number(restautant.lng)
+        );
+      } else {
+        // TM 좌표 예시 -> x, y 좌표(lng x, lat y)
+        const tmCoords = [Number(restautant.lng), Number(restautant.lat)];
 
-      // 마커 표시될 위치
-      const markerPosition = new window.kakao.maps.LatLng(
-        wgs84Coords[1],
-        wgs84Coords[0]
-      );
+        // TM -> WGS84 좌표 변환
+        const wgs84Coords = proj4('EPSG:2097', 'EPSG:4326', tmCoords);
+
+        // 마커 표시될 위치
+        markerPosition = new window.kakao.maps.LatLng(
+          wgs84Coords[1],
+          wgs84Coords[0]
+        );
+      }
 
       // 마커 생성
       const marker = new window.kakao.maps.Marker({

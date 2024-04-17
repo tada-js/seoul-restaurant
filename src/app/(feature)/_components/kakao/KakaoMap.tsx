@@ -21,15 +21,15 @@ interface Props {
   lat?: string | null;
   lng?: string | null;
   zoom?: number;
+  wgs?: boolean;
 }
 
-const KakaoMap = ({ lat, lng, zoom }: Props) => {
+const KakaoMap = ({ lat, lng, zoom, wgs }: Props) => {
   const setKakaoMap = useKakaoMapStore((state) => state.setKakaoMap);
   const location = useLocationStore((state) => state.location);
   let [wgsLat, wgsLng]: null[] | number[] = [null, null];
   const [isMapLoading, setIsMapLoading] = useState(true);
-
-  if (lat && lng) {
+  if (lat && lng && !wgs) {
     proj4.defs(
       'EPSG:2097',
       '+proj=tmerc +lat_0=38 +lon_0=127.0028902777778 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +towgs84=-146.43,507.89,681.46 +units=m +no_defs'
@@ -43,8 +43,8 @@ const KakaoMap = ({ lat, lng, zoom }: Props) => {
       const mapContainer = document.getElementById('map');
       const mapOption = {
         center: new window.kakao.maps.LatLng(
-          wgsLat ?? location.lat,
-          wgsLng ?? location.lng
+          wgs ? lat : wgsLat ?? location.lat,
+          wgs ? lng : wgsLng ?? location.lng
         ),
         level: zoom ?? location.zoom,
       };

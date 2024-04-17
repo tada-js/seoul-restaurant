@@ -6,4 +6,5 @@ export interface RestaurantType {
   category?: string | null;
   lng?: string;
   lat?: string;
+  wgs?: boolean;
 }

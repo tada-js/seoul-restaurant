@@ -78,7 +78,12 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
       {isSuccess && (
         <>
           <div className="overflow-hidden w-full mb-20 mx-auto max-h-[600px]">
-            <KakaoMap lat={restautant?.lat} lng={restautant?.lng} zoom={1} />
+            <KakaoMap
+              lat={restautant?.lat}
+              lng={restautant?.lng}
+              zoom={1}
+              wgs={restautant?.wgs}
+            />
             <KakaoMapMarker restautant={restautant} />
           </div>
         </>
