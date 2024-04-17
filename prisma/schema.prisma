@@ -18,13 +18,14 @@ model User {
 }
 
 model Restaurant {
-  id         Int     @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   name       String? // bplcnm
   address    String? // sitewhladdr
   rodaddress String? // rdnwhladdr
   category   String? // uptaenm
   lng        String? // x
   lat        String? // y
+  wgs        Boolean? // wgs 좌표계 여부
 }
 
 model Account {
