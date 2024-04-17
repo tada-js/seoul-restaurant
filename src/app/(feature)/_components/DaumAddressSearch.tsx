@@ -15,6 +15,7 @@ const DaumAddressSearch = ({ register, errors, setValue }: Props) => {
 
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
+    let jibunAddress = data.jibunAddress || data.autoJibunAddress;
     let extraAddress = '';
 
     if (data.addressType === 'R') {
@@ -29,6 +30,7 @@ const DaumAddressSearch = ({ register, errors, setValue }: Props) => {
     }
 
     setValue('rodaddress', fullAddress);
+    setValue('address', jibunAddress);
     setIsOpen(false);
   };
   return (
@@ -49,6 +51,7 @@ const DaumAddressSearch = ({ register, errors, setValue }: Props) => {
               {...register('rodaddress', { required: true })}
               className="col-span-3 block w-full rounded-md border-0 py-1.5 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
             />
+            {/* <input readOnly {...register('address')} className="hidden" /> */}
             <button
               type="button"
               onClick={() => setIsOpen((io) => !io)}
