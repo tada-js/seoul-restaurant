@@ -6,6 +6,7 @@ import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
 import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
 import { fetchRestaurant } from 'app/(feature)/_lib/restaurant';
 import Image from 'next/image';
+import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 
 interface Props {
   params: {
@@ -16,7 +17,6 @@ interface Props {
 const RestaurantPage = ({ params: { id: id } }: Props) => {
   const {
     data: restautant,
-    isFetching,
     isError,
     isSuccess,
   } = useQuery({
@@ -27,10 +27,19 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
   });
 
   const imageSrc = useImageSrc(restautant?.category);
+
+  if (isError) {
+    return (
+      <ErrorMessage
+        message={'일시적인 문제가 발생하였습니다. 다시 시도해 주세요.'}
+      />
+    );
+  }
+
   return (
     <>
       {restautant && imageSrc && (
-        <div className="max-w-screen-xl px-4 py-8 mx-auto ">
+        <div className="pt-20 max-w-screen-xl px-4 py-8 mx-auto ">
           <div className="px-2 sm:px-0">
             <div className="flex items-center justify-center gap-8">
               <div>
