@@ -7,6 +7,7 @@ import { RestaurantType } from 'app/(feature)/_model/restaurant';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import FormErrorMesssage from 'app/(feature)/_components/ui/FormErrorMesssage';
 import { toast } from 'react-toastify';
+import DaumAddressSearch from 'app/(feature)/_components/DaumAddressSearch';
 
 const RestaurantRegisterPage = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const RestaurantRegisterPage = () => {
     setValue,
     formState: { errors },
   } = useForm<RestaurantType>();
+
   return (
     <form
       className="pt-24 px-4 mx-auto py-8 overflow-hidden h-screen"
@@ -61,7 +63,7 @@ const RestaurantRegisterPage = () => {
                   type="text"
                   placeholder="식당명"
                   {...register('name', { required: true })}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none px-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none px-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
                 />
                 {errors.name?.type === 'required' && (
                   <FormErrorMesssage name="식당명을" />
@@ -80,7 +82,7 @@ const RestaurantRegisterPage = () => {
               <div className="mt-2">
                 <select
                   {...register('category', { required: true })}
-                  className="block w-full rounded-md border-0 px-2 outline-none py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-2 outline-none py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
                 >
                   <option value="">선택</option>
                   {CATEGORIES?.map((category) => (
@@ -94,6 +96,12 @@ const RestaurantRegisterPage = () => {
                 )}
               </div>
             </div>
+
+            <DaumAddressSearch
+              register={register}
+              errors={errors}
+              setValue={setValue}
+            />
           </div>
         </div>
       </div>
@@ -108,7 +116,7 @@ const RestaurantRegisterPage = () => {
         </button>
         <button
           type="submit"
-          className="rounded-md bg-[#2CBFB1] px-7 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#038C7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="rounded-md bg-[#2CBFB1] px-7 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#038C7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2CBFB1]"
         >
           제출
         </button>
