@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import KakaoMapMarker from 'app/(feature)/_components/kakao/KakaoMapMarker';
 import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
 import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
@@ -21,6 +21,7 @@ const RestaurantPage = ({ params: { id } }: Props) => {
     data: restautant,
     isError,
     isSuccess,
+    isFetching,
   } = useQuery({
     queryKey: [`restaurant-${id}`],
     queryFn: () => fetchRestaurant(id),
@@ -103,7 +104,7 @@ const RestaurantPage = ({ params: { id } }: Props) => {
           </div>
         </div>
       )}
-      {isSuccess && (
+      {isSuccess && !isFetching && (
         <>
           <div className="overflow-hidden w-full mb-20 mx-auto max-h-[600px]">
             <KakaoMap
