@@ -7,6 +7,8 @@ import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
 import { fetchRestaurant } from 'app/(feature)/_lib/restaurant';
 import Image from 'next/image';
 import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   params: {
@@ -14,7 +16,7 @@ interface Props {
   };
 }
 
-const RestaurantPage = ({ params: { id: id } }: Props) => {
+const RestaurantPage = ({ params: { id } }: Props) => {
   const {
     data: restautant,
     isError,
@@ -27,6 +29,7 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
   });
 
   const imageSrc = useImageSrc(restautant?.category);
+  const { status } = useSession();
 
   if (isError) {
     return (
@@ -39,8 +42,24 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
   return (
     <>
       {restautant && imageSrc && (
-        <div className="pt-20 max-w-screen-xl px-4 py-8 mx-auto ">
-          <div className="px-2 sm:px-0">
+        <div className="pt-20 max-w-screen-xl px-4 py-8 mx-auto">
+          {status === 'authenticated' && restautant && (
+            <div className="flex justify-end gap-4 text-gray-500 pr-4">
+              <Link
+                href={`/restaurant/edit/${restautant.id}`}
+                className=" hover:text-gray-800"
+              >
+                수정
+              </Link>
+              <Link
+                href={`/restaurant/delete/${restautant.id}`}
+                className=" hover:text-gray-800"
+              >
+                삭제
+              </Link>
+            </div>
+          )}
+          <div className="px-2 sm:px-0 py-4">
             <div className="flex items-center justify-center gap-8">
               <div>
                 <Image
@@ -90,7 +109,7 @@ const RestaurantPage = ({ params: { id: id } }: Props) => {
             <KakaoMap
               lat={restautant?.lat}
               lng={restautant?.lng}
-              zoom={1}
+              zoom={3}
               wgs={restautant?.wgs}
             />
             <KakaoMapMarker restautant={restautant} />
