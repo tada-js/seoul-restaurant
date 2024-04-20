@@ -66,6 +66,12 @@ const RestaurantsPage = () => {
     return () => clearTimeout(timerId);
   }, [fetchNext, isIntersecting, hasNextPage]);
 
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   if (isError) {
     return (
       <ErrorMessage
@@ -75,7 +81,7 @@ const RestaurantsPage = () => {
   }
 
   return (
-    <div className="pt-20 w-full px-4 py-8 mx-auto">
+    <div className="pt-20 w-full px-4 py-8 mx-auto h-dvh">
       <SearchFilter />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
@@ -128,6 +134,9 @@ const RestaurantsPage = () => {
       </ul>
       {(isFetching || hasNextPage || isFetchingNextPage) && <PingLoading />}
       <div className="w-full h-10 mb-10 touch-none" ref={ref} />
+      {!isLoading && !isError && restaurants?.pages[0].data.length === 0 && (
+        <div className="flex justify-center">🥲 검색된 식당이 없습니다.</div>
+      )}
     </div>
   );
 };
