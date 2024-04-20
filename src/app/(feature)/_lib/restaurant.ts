@@ -7,6 +7,34 @@ export const fetchRestaurant = async (id: string) => {
   return res.json() as Promise<RestaurantType>;
 };
 
+export const updateRestaurant = async (
+  data: {
+    id: number;
+    name?: string | null;
+    category?: string | null;
+    rodaddress?: string | null;
+  },
+  router: AppRouterInstance,
+  toast: typeof toastType
+) => {
+  try {
+    const res = await fetch('/api/restaurant', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+    if (res.status === 200) {
+      const { id } = await res.json();
+      toast.success('식당을 수정하였습니다.');
+      router.replace(`/restaurant/${id}`);
+    } else {
+      toast.error('❌ 다시 시도해 주세요.');
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error('❌ 문제가 발생하였습니다. 다시 시도해주세요.');
+  }
+};
+
 export const deleteRestaurant = async (
   id: string,
   router: AppRouterInstance,

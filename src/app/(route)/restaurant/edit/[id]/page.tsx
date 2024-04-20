@@ -9,7 +9,11 @@ import FormErrorMesssage from 'app/(feature)/_components/ui/FormErrorMesssage';
 import { toast } from 'react-toastify';
 import DaumAddressSearch from 'app/(feature)/_components/DaumAddressSearch';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRestaurant } from 'app/(feature)/_lib/restaurant';
+import {
+  fetchRestaurant,
+  updateRestaurant,
+} from 'app/(feature)/_lib/restaurant';
+import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 
 interface Props {
   params: {
@@ -47,27 +51,18 @@ const RestaurantEditPage = ({ params: { id } }: Props) => {
     }
   }, [isSuccess, restautant, setValue]);
 
+  if (isError) {
+    return (
+      <ErrorMessage
+        message={'일시적인 문제가 발생하였습니다. 다시 시도해 주세요.'}
+      />
+    );
+  }
+
   return (
     <form
       className="pt-24 px-4 mx-auto py-8 overflow-hidden h-screen"
-      onSubmit={handleSubmit(async (data) => {
-        try {
-          const res = await fetch('/api/restaurant', {
-            method: 'PUT',
-            body: JSON.stringify(data),
-          });
-          if (res.status === 200) {
-            const { id } = await res.json();
-            toast.success('식당을 수정하였습니다.');
-            router.replace(`/restaurant/${id}`);
-          } else {
-            toast.error('❌ 다시 시도해 주세요.');
-          }
-        } catch (error) {
-          console.log(error);
-          toast.error('❌ 문제가 발생하였습니다. 다시 시도해주세요.');
-        }
-      })}
+      onSubmit={handleSubmit((data) => updateRestaurant(data, router, toast))}
     >
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
@@ -75,6 +70,7 @@ const RestaurantEditPage = ({ params: { id } }: Props) => {
             식당 수정
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-500">
+            <strong className="pr-1">{restautant?.name}</strong>
             식당 정보를 수정해 주세요.
           </p>
 
