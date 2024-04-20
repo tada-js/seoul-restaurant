@@ -1,11 +1,9 @@
 interface Props {
-  name: string;
+  message?: string;
 }
 
-const FormErrorMesssage = ({ name }: Props) => {
-  return (
-    <div className="pt-2 text-sm text-red-500 ">{name} 입력해 주세요.</div>
-  );
+const FormErrorMesssage = ({ message }: Props) => {
+  return <div className="pt-2 text-sm text-red-500 ml-2">{message}</div>;
 };
 
 export default FormErrorMesssage;

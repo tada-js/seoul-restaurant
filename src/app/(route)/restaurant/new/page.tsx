@@ -57,17 +57,22 @@ const RestaurantRegisterPage = () => {
                 className="flex text-sm font-medium leading-6 text-gray-900"
               >
                 <strong className="text-red-500">*</strong>
-                <h3>식당명</h3>
+                <h3>식당 이름(상호)</h3>
               </label>
               <div className="mt-2">
                 <input
                   type="text"
-                  placeholder="식당명"
-                  {...register('name', { required: true })}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none px-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
+                  placeholder="식당 이름(상호)"
+                  {...register('name', {
+                    required: {
+                      value: true,
+                      message: '식당 이름을 입력해 주세요.',
+                    },
+                  })}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none px-2 ml-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
                 />
                 {errors.name?.type === 'required' && (
-                  <FormErrorMesssage name="식당명을" />
+                  <FormErrorMesssage message={errors.name.message} />
                 )}
               </div>
             </div>
@@ -82,8 +87,13 @@ const RestaurantRegisterPage = () => {
               </label>
               <div className="mt-2">
                 <select
-                  {...register('category', { required: true })}
-                  className="block w-full rounded-md border-0 px-2 outline-none py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
+                  {...register('category', {
+                    required: {
+                      value: true,
+                      message: '메뉴를 입력해 주세요.',
+                    },
+                  })}
+                  className="block w-full rounded-md border-0 px-2 outline-none py-2 ml-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
                 >
                   <option value="">선택</option>
                   {CATEGORIES?.map((category) => (
@@ -93,7 +103,7 @@ const RestaurantRegisterPage = () => {
                   ))}
                 </select>
                 {errors.category?.type === 'required' && (
-                  <FormErrorMesssage name="메뉴를" />
+                  <FormErrorMesssage message={errors.category.message} />
                 )}
               </div>
             </div>

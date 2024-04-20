@@ -66,8 +66,13 @@ const DaumAddressSearch = ({
             <input
               readOnly
               placeholder="주소 검색"
-              {...register('rodaddress', { required: true })}
-              className="col-span-3 block w-full rounded-md border-0 py-1.5 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
+              {...register('rodaddress', {
+                required: {
+                  value: true,
+                  message: '주소를 검색해 주세요.',
+                },
+              })}
+              className="col-span-3 block w-full rounded-md border-0 py-1.5 px-2 ml-1 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#2CBFB1] sm:text-sm sm:leading-6"
             />
             <button
               type="button"
@@ -78,7 +83,7 @@ const DaumAddressSearch = ({
             </button>
           </div>
           {errors?.rodaddress?.type === 'required' && (
-            <FormErrorMesssage name="주소를" />
+            <FormErrorMesssage message={errors.rodaddress.message} />
           )}
         </div>
       </div>
