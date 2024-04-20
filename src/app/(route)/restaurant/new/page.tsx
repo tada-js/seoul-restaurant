@@ -15,6 +15,7 @@ const RestaurantRegisterPage = () => {
     register,
     handleSubmit,
     setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<RestaurantType>();
 
@@ -101,6 +102,7 @@ const RestaurantRegisterPage = () => {
               register={register}
               errors={errors}
               setValue={setValue}
+              clearErrors={clearErrors}
             />
           </div>
         </div>

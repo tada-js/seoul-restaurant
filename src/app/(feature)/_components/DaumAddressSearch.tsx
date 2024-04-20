@@ -1,4 +1,9 @@
-import { UseFormRegister, FieldErrors, UseFormSetValue } from 'react-hook-form';
+import {
+  UseFormRegister,
+  FieldErrors,
+  UseFormSetValue,
+  UseFormClearErrors,
+} from 'react-hook-form';
 import { RestaurantType } from '../_model/restaurant';
 import { useState } from 'react';
 import DaumPostcodeEmbed from 'react-daum-postcode';
@@ -8,10 +13,18 @@ interface Props {
   register: UseFormRegister<RestaurantType>;
   errors: FieldErrors<RestaurantType>;
   setValue: UseFormSetValue<RestaurantType>;
+  clearErrors: UseFormClearErrors<RestaurantType>;
 }
 
-const DaumAddressSearch = ({ register, errors, setValue }: Props) => {
+const DaumAddressSearch = ({
+  register,
+  errors,
+  setValue,
+  clearErrors,
+}: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  console.log(errors);
 
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
@@ -31,6 +44,11 @@ const DaumAddressSearch = ({ register, errors, setValue }: Props) => {
 
     setValue('rodaddress', fullAddress);
     setValue('address', jibunAddress);
+
+    if (data) {
+      clearErrors(['rodaddress']);
+    }
+
     setIsOpen(false);
   };
   return (

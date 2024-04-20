@@ -28,6 +28,7 @@ const RestaurantEditPage = ({ params: { id } }: Props) => {
     register,
     handleSubmit,
     setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<RestaurantType>();
 
@@ -123,6 +124,7 @@ const RestaurantEditPage = ({ params: { id } }: Props) => {
             </div>
 
             <DaumAddressSearch
+              clearErrors={clearErrors}
               register={register}
               errors={errors}
               setValue={setValue}
