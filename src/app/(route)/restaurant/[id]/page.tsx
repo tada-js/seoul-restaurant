@@ -1,14 +1,19 @@
 'use client';
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import KakaoMapMarker from 'app/(feature)/_components/kakao/KakaoMapMarker';
 import KakaoMap from 'app/(feature)/_components/kakao/KakaoMap';
 import useImageSrc from 'app/(feature)/_hooks/useImageSrc';
-import { fetchRestaurant } from 'app/(feature)/_lib/restaurant';
+import {
+  deleteRestaurant,
+  fetchRestaurant,
+} from 'app/(feature)/_lib/restaurant';
 import Image from 'next/image';
 import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   params: {
@@ -17,6 +22,9 @@ interface Props {
 }
 
 const RestaurantPage = ({ params: { id } }: Props) => {
+  const { status } = useSession();
+  const router = useRouter();
+
   const {
     data: restautant,
     isError,
@@ -30,7 +38,6 @@ const RestaurantPage = ({ params: { id } }: Props) => {
   });
 
   const imageSrc = useImageSrc(restautant?.category);
-  const { status } = useSession();
 
   if (isError) {
     return (
@@ -52,12 +59,14 @@ const RestaurantPage = ({ params: { id } }: Props) => {
               >
                 수정
               </Link>
-              <Link
-                href={`/restaurant/delete/${restautant.id}`}
+              <button
+                onClick={() =>
+                  deleteRestaurant(id, router, toast, restautant.name)
+                }
                 className=" hover:text-gray-800"
               >
                 삭제
-              </Link>
+              </button>
             </div>
           )}
           <div className="px-2 sm:px-0 py-4">

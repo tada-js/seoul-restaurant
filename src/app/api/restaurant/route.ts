@@ -79,3 +79,22 @@ export async function PUT(req: NextRequest) {
 
   return NextResponse.json(result, { status: 200 });
 }
+
+export async function DELETE(req: NextRequest) {
+  const id = await req.json();
+
+  if (id) {
+    const result = await prisma.restaurant.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    return NextResponse.json(result, {
+      status: 200,
+    });
+  }
+  return NextResponse.json(null, {
+    status: 500,
+  });
+}
