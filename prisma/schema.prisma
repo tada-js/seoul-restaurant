@@ -15,6 +15,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  likes         Like[]
 }
 
 model Restaurant {
@@ -26,6 +27,18 @@ model Restaurant {
   lng        String? // x
   lat        String? // y
   wgs        Boolean? // wgs 좌표계 여부
+  likes      Like[]
+}
+
+model Like {
+  id           Int        @id @default(autoincrement())
+  createdAt    DateTime   @default(now())
+  restaurantId Int
+  userId       Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, restaurantId])
 }
 
 model Account {
