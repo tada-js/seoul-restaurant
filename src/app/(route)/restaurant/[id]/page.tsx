@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import RestaurantLike from 'app/(feature)/_components/RestaurantLike';
 
 interface Props {
   params: {
@@ -82,9 +83,12 @@ const RestaurantPage = ({ params: { id } }: Props) => {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold leading-7 text-gray-900 ">
-                  {restautant?.name}
-                </h3>
+                <div className="flex gap-2">
+                  <h3 className="text-xl font-bold leading-7 text-gray-900 ">
+                    {restautant?.name}
+                  </h3>
+                  <RestaurantLike restaurantId={restautant.id} />
+                </div>
                 <p className="max-w-2xl mt-1 text-sm font-medium leading-6 text-gray-600">
                   {restautant?.category}
                 </p>

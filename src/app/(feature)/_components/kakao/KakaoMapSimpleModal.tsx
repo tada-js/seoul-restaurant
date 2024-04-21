@@ -11,6 +11,7 @@ import {
   useCurrentRestaurantStore,
   useImageSrcStore,
 } from 'app/(feature)/_store/restaurant';
+import RestaurantLike from '../RestaurantLike';
 
 const KakaoMapSimpleModal = () => {
   const restaurant = useCurrentRestaurantStore(
@@ -27,7 +28,7 @@ const KakaoMapSimpleModal = () => {
         <ModalPortal>
           <div className="fixed inset-x-0 z-10 w-full max-w-sm mx-auto bg-white rounded-lg shadow-lg bottom-20 md:max-w-xl">
             <div className="p-8">
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between border-b pb-4">
                 <div className="flex items-center gap-4">
                   <Image
                     className="object-cover aspect-square"
@@ -37,7 +38,10 @@ const KakaoMapSimpleModal = () => {
                     alt="아이콘 이미지"
                   />
                   <div>
-                    <div className="font-semibold">{restaurant?.name}</div>
+                    <div className="flex gap-1">
+                      <div className="font-semibold">{restaurant?.name}</div>
+                      <RestaurantLike restaurantId={restaurant.id} />
+                    </div>
                   </div>
                 </div>
                 <button
@@ -48,11 +52,11 @@ const KakaoMapSimpleModal = () => {
                   <AiOutlineClose className="w-5 h-5 text-gray-600 hover:text-gray-900 foucs:text-gray-900" />
                 </button>
               </div>
-              <div className="mt-4 flex items-center gap-3 border-t-2 pt-4 border-[#f2f2f2]">
+              <div className="pt-4 flex items-center gap-3 border-[#f2f2f2]">
                 <HiOutlineMapPin />
                 {restaurant?.address}
               </div>
-              <div className="flex items-center gap-3 mt-4">
+              <div className="flex items-center gap-3 pt-4">
                 <LiaRoadSolid />
                 {restaurant?.rodaddress}
               </div>
