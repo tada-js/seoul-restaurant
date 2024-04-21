@@ -2,7 +2,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { RestaurantType } from '../_model/restaurant';
 import { toast as toastType } from 'react-toastify';
 
-export const fetchRestaurant = async (id: string) => {
+export const fetchRestaurant = async (id: string | number) => {
   const res = await fetch(`/api/restaurants?id=${id}`);
   return res.json() as Promise<RestaurantType>;
 };

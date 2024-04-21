@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from 'app/(feature)/_db/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]/route';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -8,6 +10,8 @@ export async function GET(req: NextRequest) {
   const limit = searchParams.get('limit') as string;
   const q = searchParams.get('q') as string;
   const district = searchParams.get('district') as string;
+
+  const session = await getServerSession(authOptions);
 
   if (page) {
     const count = await prisma.restaurant.count();
@@ -37,6 +41,11 @@ export async function GET(req: NextRequest) {
       orderBy: { id: 'asc' },
       where: {
         id: id ? parseInt(id) : {},
+      },
+      include: {
+        likes: {
+          where: session ? { userId: session.user.id } : {},
+        },
       },
     });
     return NextResponse.json(id ? restaurants[0] : restaurants, {
