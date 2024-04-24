@@ -1,8 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import React, { useCallback, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useIntersectionObserver from 'app/(feature)/_hooks/useIntersectionObserver';
 import { fetchRestaurants } from 'app/(feature)/_lib/restaurants';
 import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
@@ -10,25 +9,31 @@ import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 import PingLoading from 'app/(feature)/_components/ui/PingLoading';
 import { RestaurantType } from 'app/(feature)/_model/restaurant';
 import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
-import { useRouter } from 'next/navigation';
 import SearchFilter from 'app/(feature)/_components/SearchFilter';
-import { useSearchFilterStore } from 'app/(feature)/_store/restaurant';
 import useDebounce from 'app/(feature)/_hooks/useDebounce';
+import RestaurantList from 'app/(feature)/_components/RestaurantList';
 
 const RestaurantsPage = () => {
   const validCategories = CATEGORIES;
-
-  const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
   const intersectionObserver = useIntersectionObserver(ref, {});
-  const search = useSearchFilterStore((state) => state.search);
+  const [search, setSearch] = useState({
+    q: '',
+    district: '',
+  });
   const debouncedSearchQ = useDebounce(search?.q);
-
   const searchParams = {
     q: debouncedSearchQ,
     district: search?.district,
   };
   const isIntersecting = !!intersectionObserver?.isIntersecting;
+
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setSearch((s) => ({ ...s, [name]: value }));
+  };
 
   const {
     data: restaurants,
@@ -82,7 +87,7 @@ const RestaurantsPage = () => {
 
   return (
     <div className="pt-20 w-full px-4 py-8 mx-auto h-dvh">
-      <SearchFilter />
+      <SearchFilter onChange={onChange} />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <PulseLoading />
@@ -96,36 +101,11 @@ const RestaurantsPage = () => {
                     category = '기타';
                   }
                   return (
-                    <li
-                      className="flex justify-between py-5 gap-x-6 cursor-pointer hover:bg-teal-50 focus:bg-teal-50"
+                    <RestaurantList
                       key={rest.id}
-                      onClick={() => router.push(`/restaurant/${rest.id}`)}
-                    >
-                      <div className="flex gap-x-4">
-                        <Image
-                          src={`/images/${category}.png`}
-                          width={48}
-                          height={48}
-                          alt="아이콘 이미지"
-                        />
-                        <div>
-                          <div className="text-sm font-semibold leading-6 text-gray-900">
-                            {rest?.name}
-                          </div>
-                          <div className="mt-1 text-xs font-semibold leading-5 text-gray-500 truncate">
-                            {rest?.category}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="hidden sm:flex sm:flex-col sm:items-end">
-                        <div className="text-sm font-semibold leading-6 text-gray-900">
-                          {rest?.address}
-                        </div>
-                        <div className="mt-1 text-xs font-semibold leading-5 text-gray-500 truncate">
-                          {rest?.rodaddress}
-                        </div>
-                      </div>
-                    </li>
+                      rest={rest}
+                      category={category}
+                    />
                   );
                 })}
             </React.Fragment>
