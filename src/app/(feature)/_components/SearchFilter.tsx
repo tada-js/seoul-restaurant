@@ -5,9 +5,10 @@ interface Props {
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
+  placeholder: string;
 }
 
-const SearchFilter = ({ onChange }: Props) => {
+const SearchFilter = ({ onChange, placeholder }: Props) => {
   return (
     <div className="flex flex-row gap-2 my-4">
       <div className="flex justify-center items-center gap-2 w-full">
@@ -16,7 +17,7 @@ const SearchFilter = ({ onChange }: Props) => {
           type="search"
           name="q"
           onChange={onChange}
-          placeholder="식당 이름"
+          placeholder={placeholder}
           className={`p-4 text-sm block w-full text-gray-800 border  border-gray-300 rounded-lg bg-gray-50 outline-none focus:border-[text-[#2CBFB1}]`}
         />
       </div>

@@ -87,7 +87,9 @@ const RestaurantsPage = () => {
 
   return (
     <div className="pt-20 w-full px-4 py-8 mx-auto h-dvh">
-      <SearchFilter onChange={onChange} />
+      <h2 className="text-lg font-semibold">식당 목록</h2>
+      <p className="text-sm text-gray-500 py-2">등록된 식당 목록입니다.</p>
+      <SearchFilter onChange={onChange} placeholder="식당 이름" />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <PulseLoading />
