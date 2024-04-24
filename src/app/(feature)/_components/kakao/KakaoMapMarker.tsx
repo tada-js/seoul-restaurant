@@ -88,7 +88,7 @@ const KakaoMapMarker = ({ restautant }: Props) => {
         customOverlay.setMap(null);
       });
     }
-  }, [kakaoMap, restautant]);
+  }, [imageSrc, kakaoMap, restautant]);
 
   useEffect(() => {
     loadKakoMarker();
