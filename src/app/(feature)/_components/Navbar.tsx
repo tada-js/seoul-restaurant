@@ -65,9 +65,9 @@ const Navbar = () => {
             <li key="/b">
               <Link
                 className={`text-sm flex flex-col items-center hover:text-gray-500  ${isSelected(
-                  '/b'
+                  '/user/likes'
                 )}`}
-                href="/b"
+                href="/user/likes"
               >
                 <CiHeart className="text-4xl" />
                 찜한 식당

@@ -25,6 +25,8 @@ const RestaurantLike = ({ restaurantId }: Props) => {
           method: 'POST',
           body: JSON.stringify({
             restaurantId: restautant.id,
+            restaurantName: restautant.name,
+            restaurantAddress: restautant.address,
           }),
         });
 

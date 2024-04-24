@@ -3,9 +3,46 @@ import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const q = searchParams.get('q') as string;
+  const district = searchParams.get('district') as string;
+  const page = searchParams.get('page') as string;
+  const limit = searchParams.get('limit') as string;
   const session = await getServerSession(authOptions);
-  const { restaurantId } = await req.json();
+  const count = await prisma.like.count();
+  const skipPage = parseInt(page) - 1;
+
+  const likes = await prisma.like.findMany({
+    orderBy: { createdAt: 'desc' },
+    where: {
+      userId: session?.user.id,
+      restaurantName: q ? { contains: q } : {},
+      restaurantAddress: district ? { contains: district } : {},
+    },
+    include: {
+      restaurant: true,
+    },
+    take: parseInt(limit),
+    skip: skipPage * 20,
+  });
+
+  return NextResponse.json(
+    {
+      page: parseInt(page),
+      data: likes,
+      totalCount: count,
+      totalPage: Math.ceil(count / 10),
+    },
+    {
+      status: 200,
+    }
+  );
+}
+
+export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  const { restaurantId, restaurantName, restaurantAddress } = await req.json();
 
   if (!session?.user) {
     return NextResponse.json('401 Unauthorized', { status: 401 });
@@ -31,6 +68,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     like = await prisma.like.create({
       data: {
         restaurantId,
+        restaurantName,
+        restaurantAddress,
         userId: session.user.id,
       },
     });
