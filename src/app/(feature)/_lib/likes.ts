@@ -16,3 +16,8 @@ export const fetchLikes = async ({
   const res = await fetch(`/api/likes?${queryParams}`);
   return res.json();
 };
+
+export const fetchLikesCount = async () => {
+  const res = await fetch(`/api/user/my`);
+  return res.json();
+};
