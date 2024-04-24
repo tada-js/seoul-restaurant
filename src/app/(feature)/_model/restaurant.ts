@@ -1,3 +1,5 @@
+import { LikeType } from './likes';
+
 export interface RestaurantType {
   id: number;
   name?: string | null;
@@ -7,12 +9,5 @@ export interface RestaurantType {
   lng?: string;
   lat?: string;
   wgs?: boolean;
-  likes?: RestaurantLikeType[];
-}
-
-export interface RestaurantLikeType {
-  id: number;
-  restaurantId: number;
-  userId: number;
-  restaurant?: RestaurantType;
+  likes?: LikeType[];
 }
