@@ -4,7 +4,7 @@ export interface LikeType {
   id: number;
   userId: number;
   createdAt: string;
-  restaurant: RestaurantType;
+  restaurant?: RestaurantType;
   restaurantName: string;
   restaurantAddress: string;
   restaurantId: number;
