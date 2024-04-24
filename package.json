@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-ts": "concurrently -n NEXT,TS -c magenta,cyan \"next dev -p 1234\" \"yarn ts --watch\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
