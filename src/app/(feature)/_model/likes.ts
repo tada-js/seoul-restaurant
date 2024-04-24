@@ -2,7 +2,10 @@ import { RestaurantType } from './restaurant';
 
 export interface LikeType {
   id: number;
-  restaurantId: number;
   userId: number;
-  restaurant?: RestaurantType;
+  createdAt: string;
+  restaurant: RestaurantType;
+  restaurantName: string;
+  restaurantAddress: string;
+  restaurantId: number;
 }

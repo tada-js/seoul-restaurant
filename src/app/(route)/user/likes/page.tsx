@@ -10,6 +10,7 @@ import { CATEGORIES } from 'app/(feature)/_constants/restaurant';
 import useDebounce from 'app/(feature)/_hooks/useDebounce';
 import useIntersectionObserver from 'app/(feature)/_hooks/useIntersectionObserver';
 import { fetchLikes } from 'app/(feature)/_lib/likes';
+import { LikeType } from 'app/(feature)/_model/likes';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const UserLikesPage = () => {
@@ -89,8 +90,8 @@ const UserLikesPage = () => {
           likes?.pages?.map((page, index) => (
             <React.Fragment key={index}>
               {page.data &&
-                page.data.map((data: any) => {
-                  let category = data.restaurant.category;
+                page.data.map((data: LikeType) => {
+                  let category = data.restaurant?.category;
                   if (category && !validCategories.includes(category)) {
                     category = '기타';
                   }

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { RestaurantType } from '../_model/restaurant';
 
 interface Props {
-  rest: RestaurantType;
+  rest?: RestaurantType;
   category?: string | null;
 }
 
@@ -12,8 +12,8 @@ const RestaurantList = ({ rest, category }: Props) => {
   return (
     <li
       className="flex justify-between py-5 gap-x-6 cursor-pointer hover:bg-teal-50 focus:bg-teal-50"
-      key={rest.id}
-      onClick={() => router.push(`/restaurant/${rest.id}`)}
+      key={rest?.id}
+      onClick={() => router.push(`/restaurant/${rest?.id}`)}
     >
       <div className="flex gap-x-4">
         <Image
