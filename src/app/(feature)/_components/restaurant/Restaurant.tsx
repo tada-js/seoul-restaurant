@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import RestaurantLike from 'app/(feature)/_components/RestaurantLike';
+import RestaurantLike from 'app/(feature)/_components/restaurant/RestaurantLike';
 
 interface Props {
   id: string;

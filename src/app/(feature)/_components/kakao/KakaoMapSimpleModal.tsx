@@ -11,7 +11,7 @@ import {
   useCurrentRestaurantStore,
   useImageSrcStore,
 } from 'app/(feature)/_store/restaurant';
-import RestaurantLike from '../RestaurantLike';
+import RestaurantLike from '../restaurant/RestaurantLike';
 
 const KakaoMapSimpleModal = () => {
   const restaurant = useCurrentRestaurantStore(

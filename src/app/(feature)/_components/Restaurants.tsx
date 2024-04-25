@@ -11,7 +11,7 @@ import { RestaurantType } from 'app/(feature)/_model/restaurant';
 import PulseLoading from 'app/(feature)/_components/ui/PulseLoading';
 import SearchFilter from 'app/(feature)/_components/SearchFilter';
 import useDebounce from 'app/(feature)/_hooks/useDebounce';
-import RestaurantList from 'app/(feature)/_components/RestaurantList';
+import RestaurantList from 'app/(feature)/_components/restaurant/RestaurantList';
 
 const Restaurants = () => {
   const validCategories = CATEGORIES;

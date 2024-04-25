@@ -1,4 +1,4 @@
-import RestaurantRegister from 'app/(feature)/_components/RestaurantRegister';
+import RestaurantRegister from 'app/(feature)/_components/restaurant/RestaurantRegister';
 
 const RestaurantRegisterPage = () => {
   return <RestaurantRegister />;

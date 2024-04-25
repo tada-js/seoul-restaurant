@@ -1,4 +1,4 @@
-import RestaurantEdit from 'app/(feature)/_components/RestaurantEdit';
+import RestaurantEdit from 'app/(feature)/_components/restaurant/RestaurantEdit';
 
 interface Props {
   params: {

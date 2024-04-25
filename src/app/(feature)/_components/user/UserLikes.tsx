@@ -1,7 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import RestaurantList from 'app/(feature)/_components/RestaurantList';
+import RestaurantList from 'app/(feature)/_components/restaurant/RestaurantList';
 import SearchFilter from 'app/(feature)/_components/SearchFilter';
 import ErrorMessage from 'app/(feature)/_components/ui/ErrorMessage';
 import PingLoading from 'app/(feature)/_components/ui/PingLoading';

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { RestaurantType } from '../_model/restaurant';
+import { RestaurantType } from '../../_model/restaurant';
 
 interface Props {
   rest?: RestaurantType;

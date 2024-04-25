@@ -1,4 +1,4 @@
-import UserLikes from 'app/(feature)/_components/UserLikes';
+import UserLikes from 'app/(feature)/_components/user/UserLikes';
 
 const UserLikesPage = () => {
   return <UserLikes />;

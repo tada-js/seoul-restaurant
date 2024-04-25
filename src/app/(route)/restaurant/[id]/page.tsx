@@ -1,4 +1,4 @@
-import Restaurant from 'app/(feature)/_components/Restaurant';
+import Restaurant from 'app/(feature)/_components/restaurant/Restaurant';
 
 interface Props {
   params: {

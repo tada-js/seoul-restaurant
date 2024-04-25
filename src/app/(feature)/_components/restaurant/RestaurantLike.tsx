@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { fetchRestaurant } from '../_lib/restaurant';
+import { fetchRestaurant } from '../../_lib/restaurant';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 
