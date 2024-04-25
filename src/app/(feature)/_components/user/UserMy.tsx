@@ -33,6 +33,8 @@ const UserMy = () => {
               className="object-cover object-center h-32"
               src={session?.user.image || '/images/DefaultProfile.png'}
               alt="프로필 이미지"
+              width={120}
+              height={128}
             />
           </div>
           <div className="text-center mt-2 pt-4">
