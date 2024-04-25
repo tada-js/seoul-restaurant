@@ -19,7 +19,7 @@ const UserLogin = () => {
 
   return (
     <div className="h-dvh">
-      <div className="flex flex-col justify-center px-6 lg:px-8 h-[60vh]">
+      <div className="flex flex-col justify-center px-6 lg:px-8 h-[85vh]">
         <div className="w-full max-w-sm mx-auto">
           <div className="mt-6 text-2xl font-bold text-center text-gray-700">
             로그인
