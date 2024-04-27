@@ -13,6 +13,13 @@ import { fetchLikes } from 'app/(feature)/_lib/likes';
 import { LikeType } from 'app/(feature)/_model/likes';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+interface LastPageParams {
+  page: number;
+  data: LikeType[];
+  totalCount: number;
+  totalPage: number;
+}
+
 const UserLikes = () => {
   const validCategories = CATEGORIES;
   const [search, setSearch] = useState({
@@ -47,7 +54,7 @@ const UserLikes = () => {
     queryKey: ['likes', searchParams],
     queryFn: ({ pageParam = 1 }) => fetchLikes({ pageParam, searchParams }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage: any) =>
+    getNextPageParam: (lastPage: LastPageParams) =>
       lastPage.data?.length > 0 ? lastPage.page + 1 : undefined,
   });
 
