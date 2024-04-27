@@ -24,8 +24,6 @@ const DaumAddressSearch = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  console.log(errors);
-
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let jibunAddress = data.jibunAddress || data.autoJibunAddress;
