@@ -70,6 +70,7 @@ const KakaoMapSimpleModal = () => {
               onClick={() => {
                 setCurrentRestaurant(null);
               }}
+              aria-label="Restaurant Details Page"
             >
               상세보기
             </Link>

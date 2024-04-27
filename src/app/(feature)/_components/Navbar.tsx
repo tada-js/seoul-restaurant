@@ -18,12 +18,15 @@ const Navbar = () => {
         <div
           className={`cursor-pointer px-[18px] text-lg font-extrabold text-[#2CBFB1]`}
         >
-          <Link href="/">서울식당</Link>
+          <Link href="/" aria-label="Home">
+            서울식당
+          </Link>
         </div>
         {session && status === 'authenticated' && (
           <button
             className="px-6 hover:text-gray-600 focus:text-gray-600"
             onClick={() => signOut()}
+            aria-label="Sign out"
           >
             로그아웃
           </button>
@@ -32,6 +35,7 @@ const Navbar = () => {
           <Link
             className="px-6 hover:text-gray-600 focus:text-gray-600"
             href="/api/auth/signin"
+            aria-label="Sign in"
           >
             로그인
           </Link>
@@ -46,6 +50,7 @@ const Navbar = () => {
                   '/restaurants'
                 )}`}
                 href="/restaurants"
+                aria-label="Restaurant List"
               >
                 <CiViewList className="text-4xl" />
                 식당 목록
@@ -57,6 +62,7 @@ const Navbar = () => {
                   '/restaurant/new'
                 )}`}
                 href="/restaurant/new"
+                aria-label="Restaurant Register"
               >
                 <CiSaveUp2 className="text-4xl" />
                 식당 등록
@@ -68,6 +74,7 @@ const Navbar = () => {
                   '/user/likes'
                 )}`}
                 href="/user/likes"
+                aria-label="Like Restaurant"
               >
                 <CiHeart className="text-4xl" />
                 찜한 식당
@@ -79,6 +86,7 @@ const Navbar = () => {
                   '/user/my'
                 )}`}
                 href="/user/my"
+                aria-label="My Page"
               >
                 <CiUser className="text-4xl" />
                 마이페이지

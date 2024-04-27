@@ -54,6 +54,7 @@ const Restaurant = ({ id }: Props) => {
               <Link
                 href={`/restaurant/edit/${restautant.id}`}
                 className=" hover:text-gray-800"
+                aria-label="Edit"
               >
                 수정
               </Link>
@@ -62,6 +63,7 @@ const Restaurant = ({ id }: Props) => {
                   deleteRestaurant(id, router, toast, restautant.name)
                 }
                 className=" hover:text-gray-800"
+                aria-label="Delete"
               >
                 삭제
               </button>
