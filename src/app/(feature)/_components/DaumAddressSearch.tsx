@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { RestaurantType } from '../_model/restaurant';
 import { useState } from 'react';
-import DaumPostcodeEmbed from 'react-daum-postcode';
+import DaumPostcodeEmbed, { Address } from 'react-daum-postcode';
 import FormErrorMesssage from './ui/FormErrorMesssage';
 
 interface Props {
@@ -24,7 +24,7 @@ const DaumAddressSearch = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleComplete = (data: any) => {
+  const handleComplete = (data: Address) => {
     let fullAddress = data.address;
     let jibunAddress = data.jibunAddress || data.autoJibunAddress;
     let extraAddress = '';
