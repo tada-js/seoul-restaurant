@@ -13,6 +13,13 @@ import SearchFilter from 'app/(feature)/_components/SearchFilter';
 import useDebounce from 'app/(feature)/_hooks/useDebounce';
 import RestaurantList from 'app/(feature)/_components/restaurant/RestaurantList';
 
+interface LastPageParams {
+  page: number;
+  data: RestaurantType[];
+  totalCount: number;
+  totalPage: number;
+}
+
 const Restaurants = () => {
   const validCategories = CATEGORIES;
   const ref = useRef<HTMLDivElement | null>(null);
@@ -48,7 +55,7 @@ const Restaurants = () => {
     queryFn: ({ pageParam = 1 }) =>
       fetchRestaurants({ pageParam, searchParams }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage: any) =>
+    getNextPageParam: (lastPage: LastPageParams) =>
       lastPage.data?.length > 0 ? lastPage.page + 1 : undefined,
   });
 
